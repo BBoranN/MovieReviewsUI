@@ -1,9 +1,6 @@
 <template>
     <div class="Container">
-        <div>
-            <input type="text" placeholder="Search...">
-            <button>Search</button>
-        </div>
+        <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
         <div class="Media" v-if="media">
             <img src="../images/noMediaImage.jpg" class="MediaImg">
             <div class="MediaInfo">
@@ -27,8 +24,10 @@ import {ref, onMounted} from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { type media } from '../types';
+import SearchDiv from './SearchDiv.vue';
 
 const media = ref<media | null>(null);
+const searchTerm = ref('');
 
 onMounted(async () =>{
     const route = useRoute();

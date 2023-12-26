@@ -1,9 +1,6 @@
 <template>
     <div class="Main">
-        <div>
-            <input type="text" v-model="searchTerm" placeholder="Search...">
-            <button @click="search">Search</button>
-        </div>
+        <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
         <div>
             <div v-for="media in medias">
                 <div class="Media" @click ="goToMedia(media.name)">
@@ -20,6 +17,7 @@
     import axios from 'axios';
     import {type media} from '../types';
     import {useRouter} from 'vue-router';
+    import SearchDiv from './SearchDiv.vue';
 
     const router = useRouter();
     const searchTerm = ref('');
@@ -50,9 +48,6 @@
         
     }
 
-    function search(){
-        router.push('/home/search/'+searchTerm.value);
-    }
 
 </script>
 
