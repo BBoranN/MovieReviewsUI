@@ -1,19 +1,30 @@
 <template>
     <div class="Register">
         <h3>Create Account</h3>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button>Sign in to Continue</button>
+        <input type="text" placeholder="Username" v-model="username"/>
+        <input type="password" placeholder="Password" v-model="password"/>
+        <button @click="Register">Sign in to Continue</button>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import axios from 'axios';
 const username = ref('');
 const password = ref('');
 
-function login(){
+function Register(){
+    console.log('login function called'); // Add this line
+    console.log('username:', username.value); // And this line
+    console.log('password:', password.value); // And this line
 
+    axios.post('https://localhost:7129/api/User/Login',{"username":username.value, "password":password.value}).
+    then((response) => {
+        console.log(response.data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 }
 
 </script>
