@@ -15,6 +15,7 @@ import ProfileView from '@/views/UserProfileView.vue'
 import UserProfile from '@/components/UserProfileMain.vue'
 import UserLists from '@/components/UserLists.vue'
 import UserReviews from '@/components/UserReviews.vue'
+import AddMediaView from '@/views/AddMediaView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -106,6 +107,11 @@ const router = createRouter({
           component: UserReviews
         }
       ]
+    },
+    {
+      path: '/addmedia',
+      name: 'addmedia',
+      component: AddMediaView
     }
       
   ]

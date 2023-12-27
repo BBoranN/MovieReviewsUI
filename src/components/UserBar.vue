@@ -5,7 +5,8 @@
             <p v-text="username"></p>
         </div>
         <div>
-            <button @click ="toggleLists" >Lists</button>
+            <button v-if="isAdmin" @click="addMedia">Add New Media</button>
+            <button v-else @click ="toggleLists" >Lists</button>
             <div v-if="showLists">
                 <div v-for="list in lists" :key="list.id">
                     <button v-text="list.name"></button>
@@ -31,12 +32,14 @@
     const lists = ref<list[]>([]);
     const showLists = ref(false);
     const username = ref('');
+    const isAdmin = ref(false);
     onMounted(() => {
         if(!sessionStorage.getItem('token')){
             isLoggedIn.value = false;
         }
         else{
             const user = JSON.parse( sessionStorage.getItem('user')!);
+            isAdmin.value = user.isAdmin;
             username.value = user.name;
             isLoggedIn.value = true;
             const response = axios.get('https://localhost:7129/api/List/getUserLists?id='+user.id).
@@ -68,6 +71,9 @@
     }
     function goToProfile(){
         router.push('/MyProfile');
+    }
+    function addMedia(){
+        router.push('/AddMedia');
     }
 </script>
 
