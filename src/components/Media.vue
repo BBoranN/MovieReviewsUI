@@ -120,8 +120,8 @@ function goToUser(userId: number){
 }
 .Media{
     display: grid;
-    grid-template-columns: 40% 60%;
-    align-items: center;
+    grid-template-columns: 27% 50%;
+    justify-items: center;
 }
 .MediaImg{
     width: 100%; /* adjust as needed */
@@ -131,11 +131,11 @@ function goToUser(userId: number){
     object-fit:contain;
 }
 .InfoText{
-    font-size: 1.5rem;
     font-weight: 500;
     color: white;
 }
 .ReviewContainer{
+    
     display:grid;
     grid-template-rows: 10% 80%;
 }

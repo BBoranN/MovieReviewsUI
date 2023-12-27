@@ -4,7 +4,7 @@
         <input type="text" v-model="mediaDescription" placeholder="Description" />
         <input type="text" v-model="mediaFotoUrl" placeholder="FotoUrl" />
         <input type="text" v-model="mediaGenre" placeholder="genre">
-        <input type="text" placeholder="director">
+        <input type="text" v-model ="mediaDirector" placeholder="director">
 
         <input type="radio" id="movie" value="Movie" v-model="mediaType">
         <label for="movie">Movie</label>
@@ -25,10 +25,35 @@ const mediaDescription = ref('');
 const mediaFotoUrl = ref('');
 const mediaGenre = ref('');
 const mediaType = ref('');
+const mediaDirector = ref('');
 
-function Add(){
+async function Add(){
+    const token = sessionStorage.getItem('token');
     console.log('Add function called'); // Add this line
     console.log('mediaType:', mediaType.value); // And this line
+    if(mediaType.value == 'Movie'){
+        await axios.post('https://localhost:7129/api/Media/addMovie',{"title":mediaTitle.value, "description":mediaDescription.value,
+        "genre":mediaGenre.value, "director":mediaDirector.value,"discriminator":mediaType.value},{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }).
+        then((response) => {
+        console.log(response.data);
+    })
+    }
+    else if(mediaType.value == 'Series'){
+        await axios.post('https://localhost:7129/api/Media/addSerie',{"title":mediaTitle.value, "description":mediaDescription.value,
+        "genre":mediaGenre.value, "director":mediaDirector.value,"discriminator":mediaType.value},{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }).
+        then((response) => {
+        console.log(response.data);
+    })
+    }
+
 }
 </script>
 
