@@ -1,6 +1,7 @@
 <template>
     <div class="Container">
         <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
+        <button>Add to a List</button>
         <div class="Media" v-if="media">
             <img src="../images/noMediaImage.jpg" class="MediaImg">
             <div class="MediaInfo">
@@ -12,9 +13,21 @@
         </div>
 
         <div class="ReviewContainer">
-            <button>Make Review</button>
+            <button @click="NewReview">Make Review</button>
+            <div v-if="reviewing">
+                <textarea v-model="userReview"></textarea>
+                <button @click="MakeReview">Submit</button>
+            </div>
+            <div v-if="reviews">
+                <div v-for="review in reviews" class="Review">
+                    <div class="ReviewHeader" @click="goToUser(review.userId)">
+                        <img src="../images/noUserImage.png" class="ProfileImage">
+                        <p class="Review">{{review.username}}</p>
+                    </div>
+                    <p class="Review">{{review.review}}</p>
+                </div>
+            </div>
         </div>
-
     </div>
 </template>
 
@@ -23,11 +36,15 @@
 import {ref, onMounted} from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
-import { type media } from '../types';
+import { type media ,type mediaReview} from '../types';
 import SearchDiv from './SearchDiv.vue';
+import router from '@/router';
 
 const media = ref<media | null>(null);
+const reviews = ref<mediaReview[]>([]);
 const searchTerm = ref('');
+const reviewing= ref(false);
+const userReview= ref('');
 
 onMounted(async () =>{
     const route = useRoute();
@@ -47,7 +64,48 @@ onMounted(async () =>{
         console.log(mediaItem);
         media.value = mediaItem ;
     })
+
+    const response2= await axios.get('https://localhost:7129/api/Review/getLastReviews?mediaId='+media.value!.id).
+    then((response) => {
+        for (let x in response.data){
+            let reviewItem:mediaReview = {
+                reviewId: response.data[x].reviewid,
+                userId: response.data[x].userid,
+                mediaId: response.data[x].mediaId,
+                review: response.data[x].review,
+                username: response.data[x].username,
+                mediatitle: response.data[x].mediatitle,
+            }
+            reviews.value.push(reviewItem);
+        }
+        console.log(reviews.value);
+    })
 });
+
+function NewReview(){
+    reviewing.value = !reviewing.value;
+}
+
+async function MakeReview(){
+    const user= sessionStorage.getItem('user');
+    const userId = JSON.parse(user!).id;
+    const token = sessionStorage.getItem('token');
+    const mediaId = media.value!.id;
+    reviewing.value = false;
+
+    const response = await axios.post('https://localhost:7129/api/Review/addReview',{"reviewerId":userId, "reviewedId":mediaId, "review":userReview.value},{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((response) => {
+        console.log(response.data);
+    })
+    
+}
+
+function goToUser(userId: number){
+    router.push('/userprofile/'+userId);
+}
 
 </script>
 
@@ -55,7 +113,7 @@ onMounted(async () =>{
 
 .Container{
     display: grid;
-    grid-template-rows: 20% 30% 50%;
+    grid-template-rows: 20% 5% 25% 50%;
     justify-items: center;
     height: 100%;
     width: 100%;
@@ -78,7 +136,25 @@ onMounted(async () =>{
     color: white;
 }
 .ReviewContainer{
-
+    display:grid;
+    grid-template-rows: 10% 80%;
+}
+.Review{
+    font-weight: 500;
+    color: white;
 }
 
+.ProfileImage{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+.ReviewHeader{
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+.Review{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
 </style>

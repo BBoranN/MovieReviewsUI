@@ -1,7 +1,7 @@
 export type user ={
     id: number,
     name: string,
-    isAdmin: boolean,
+    isAdmin?: boolean,
     email: string
 }
 
@@ -18,4 +18,13 @@ export type media = {
     description: string,
     director: string,
     genre: string
+}
+
+export type mediaReview ={
+    mediatitle: string,
+    mediaId: number,
+    reviewId: number,
+    username: string,
+    userId: number,
+    review: string
 }

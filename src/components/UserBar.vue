@@ -1,7 +1,7 @@
 <template>
     <div v-if="isLoggedIn" class="UpperContainer">
         <div class="User">
-            <img class="ProfileImage" src="../images/noUserImage.png">
+            <img class="ProfileImage" src="../images/noUserImage.png" @click="goToProfile">
             <p v-text="username"></p>
         </div>
         <div>
@@ -58,13 +58,16 @@
     }
     function logout(){
         sessionStorage.removeItem('token');
-        router.push('/Login');
+        router.push({ name: 'login' });
     }
     function login(){
-        router.push('/Login');
+        router.push({ name: 'login' });
     }
     function register(){
         router.push('/Register');
+    }
+    function goToProfile(){
+        router.push('/MyProfile');
     }
 </script>
 
