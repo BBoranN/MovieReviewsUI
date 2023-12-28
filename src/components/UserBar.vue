@@ -1,7 +1,7 @@
 <template>
     <div v-if="isLoggedIn" class="UpperContainer">
         <div class="User">
-            <img class="ProfileImage" src="../images/noUserImage.png" @click="goToProfile">
+            <img :src="photoUrl" class="ProfileImage" alt="../images/noUserImage.png" @click="goToProfile">
             <p v-text="username"></p>
         </div>
         <div>
@@ -32,15 +32,18 @@
     const lists = ref<list[]>([]);
     const showLists = ref(false);
     const username = ref('');
+    const photoUrl = ref('');
     const isAdmin = ref(false);
     onMounted(() => {
         if(!sessionStorage.getItem('token')){
             isLoggedIn.value = false;
         }
         else{
+            console.log(sessionStorage.getItem('token'));
             const user = JSON.parse( sessionStorage.getItem('user')!);
             isAdmin.value = user.isAdmin;
             username.value = user.name;
+            photoUrl.value = user.photoUrl;
             isLoggedIn.value = true;
             const response = axios.get('https://localhost:7129/api/List/getUserLists?id='+user.id).
             then((response) => {

@@ -4,7 +4,7 @@
         <div>
             <div v-for="media in medias">
                 <div class="Media" @click ="goToMedia(media.name)">
-                    <img src="../images/noMediaImage.jpg" class="MediaImg">
+                    <img :src=media.photoUrl alt="../images/noMediaImage.jpg" class="MediaImg">
                     <p class="MediaTitle">{{ media.name }}</p>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     discriminator: response.data[x].discriminator,
                     genre: response.data[x].genre,
                     director: response.data[x].director,
-                    //image: response.data[x].image,
+                    photoUrl: response.data[x].photoUrl,
 
                 }
                 medias.value.push(mediaItem);
@@ -61,14 +61,14 @@
 
 .Media{
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 30% 60%;
     align-items: center;
 }
 .MediaImg{
     width: 100%; /* adjust as needed */
     height: auto; /* maintain aspect ratio */
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70%;
+    max-height: 70%;
     object-fit:contain;
 }
 .MediaTitle{

@@ -4,7 +4,7 @@
         <div :key="$route.fullPath">
             <div v-for="media in searchResults">
                 <div class="Media" @click ="goToMedia(media.name)">
-                    <img src="../images/noMediaImage.jpg" class="MediaImg">
+                    <img :src=media.photoUrl alt="../images/noMediaImage.jpg" class="MediaImg">
                     <p class="MediaTitle">{{ media.name }}</p>
                 </div>
             </div>
@@ -36,7 +36,7 @@ watch(route, async (to, from) => {
             discriminator: response.data.discriminator,
             genre: response.data.genre,
             director: response.data.director,
-            //image: response.data.image,
+            photoUrl: response.data.photoUrl,
         }
         searchResults.value = [];
         searchResults.value.push(mediaItem);
@@ -58,7 +58,7 @@ onMounted(async () =>{
             discriminator: response.data.discriminator,
             genre: response.data.genre,
             director: response.data.director,
-            //image: response.data.image,
+            photoUrl : response.data.photoUrl,
         }
         console.log(mediaItem);
         searchResults.value.push(mediaItem);
@@ -88,10 +88,8 @@ function goToMedia(mediaName: string){
     align-items: center;
 }
 .MediaImg{
-    width: 100%; /* adjust as needed */
-    height: auto; /* maintain aspect ratio */
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70%;
+    max-height: 70%;
     object-fit:contain;
 }
 .MediaTitle{

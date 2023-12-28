@@ -24,13 +24,13 @@ function login(){
     
     axios.post('https://localhost:7129/api/User/Login',{"username":username.value, "password":password.value}).
     then((response) => {
-        console.log(response.data);
         sessionStorage.setItem('token', response.data.token);
         let user:user ={
             name: response.data.user.username,
             id: response.data.user.id,
             isAdmin: response.data.user.isAdmin,
             email: response.data.user.email,
+            photoUrl: response.data.user.photoUrl
         }
         sessionStorage.setItem('user', JSON.stringify(user));
         router.push('/home');

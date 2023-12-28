@@ -2,7 +2,8 @@ export type user ={
     id: number,
     name: string,
     isAdmin?: boolean,
-    email: string
+    email: string,
+    photoUrl?: string
 }
 
 export type list = {
@@ -18,6 +19,7 @@ export type media = {
     description: string,
     director: string,
     genre: string
+    photoUrl: string,
 }
 
 export type mediaReview ={
@@ -27,4 +29,5 @@ export type mediaReview ={
     username: string,
     userId: number,
     review: string
+    photoUrl: string,
 }

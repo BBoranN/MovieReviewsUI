@@ -2,9 +2,9 @@
     <div class="Container">
         <input type="text" v-model="mediaTitle" placeholder="Title" />
         <input type="text" v-model="mediaDescription" placeholder="Description" />
-        <input type="text" v-model="mediaFotoUrl" placeholder="FotoUrl" />
         <input type="text" v-model="mediaGenre" placeholder="genre">
         <input type="text" v-model ="mediaDirector" placeholder="director">
+        <input type="text" v-model="mediaPhotoUrl" placeholder="photoUrl">
 
         <input type="radio" id="movie" value="Movie" v-model="mediaType">
         <label for="movie">Movie</label>
@@ -12,7 +12,7 @@
         <label for="series">Series</label>
 
         <button @click="Add">Add</button>
-        <button>Back</button>
+        <button @click="Back">Back</button>
     </div>
 </template>
 
@@ -22,10 +22,10 @@ import axios from 'axios';
 
 const mediaTitle= ref('');
 const mediaDescription = ref('');
-const mediaFotoUrl = ref('');
 const mediaGenre = ref('');
 const mediaType = ref('');
 const mediaDirector = ref('');
+const mediaPhotoUrl = ref('');
 
 async function Add(){
     const token = sessionStorage.getItem('token');
@@ -33,7 +33,7 @@ async function Add(){
     console.log('mediaType:', mediaType.value); // And this line
     if(mediaType.value == 'Movie'){
         await axios.post('https://localhost:7129/api/Media/addMovie',{"title":mediaTitle.value, "description":mediaDescription.value,
-        "genre":mediaGenre.value, "director":mediaDirector.value,"discriminator":mediaType.value},{
+        "genre":mediaGenre.value,"photoUrl":mediaPhotoUrl.value, "director":mediaDirector.value,"discriminator":mediaType.value},{
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -44,7 +44,7 @@ async function Add(){
     }
     else if(mediaType.value == 'Series'){
         await axios.post('https://localhost:7129/api/Media/addSerie',{"title":mediaTitle.value, "description":mediaDescription.value,
-        "genre":mediaGenre.value, "director":mediaDirector.value,"discriminator":mediaType.value},{
+        "genre":mediaGenre.value,"photoUrl":mediaPhotoUrl.value, "director":mediaDirector.value,"discriminator":mediaType.value},{
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -54,6 +54,9 @@ async function Add(){
     })
     }
 
+}
+function Back(){
+    window.history.back();
 }
 </script>
 
