@@ -58,8 +58,8 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background: #007BFF;
-    color: white;
+    background: #9fa0a0;
+    color: rgb(0, 0, 0);
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;

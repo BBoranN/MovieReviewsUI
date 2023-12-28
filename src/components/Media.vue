@@ -3,9 +3,9 @@
         <div class="Search">
             <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
         </div>
-        <div>
-            <button @click="getLists">Add to a List</button>
-            <div v-if="showLists">
+        <div class="UserList">
+            <button @click="getLists" class="AddListButton">Add to a List</button>
+            <div v-if="showLists" class="ListContainer">
                 <div v-for="list in lists" :key="list.id">
                     <button v-text="list.name" @click="AddToThis(list)"></button>
                 </div>
@@ -18,8 +18,16 @@
                 <p class="InfoText">Description : {{media!.description}}</p>
                 <p class="InfoText">Genre : {{media!.genre}}</p>
                 <p class="InfoText">Director : {{media!.director}}</p>
+                <div class="VoteButtons">
+                    <button class="icon-button" @click="">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                    </button>
+                    <button class="icon-button" @click="">
+                        <i class="bi bi-hand-thumbs-down"></i>
+                    </button>
+                </div>
+                <button v-if="isAdmin" @click="DeleteFromDatabase" class="DeleteB">Delete from database</button>
             </div>
-            <button v-if="isAdmin" @click="DeleteFromDatabase" class="DeleteB">Delete from database</button>
         </div>
 
         <div class="ReviewContainer">
@@ -30,7 +38,7 @@
                     <button @click="MakeReview">Submit</button>
                 </div>
             </div>
-            <div v-if="reviews">
+            <div v-if="reviews" class="Review2">
                 <div v-for="review in reviews" class="Review">
                     <div class="ReviewHeader" @click="goToUser(review.userId)">
                         <img :src=review.photoUrl alt="../images/noUserImage.png" class="ProfileImage">
@@ -203,9 +211,42 @@ function DeleteFromDatabase(){
     width: 100%;
     
 }
+.UserList{
+
+    width: 80%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    
+}
+.AddListButton{
+    margin-left: 5%;
+    width: 10%;
+    margin-right: auto;
+    background-color: #007BFF;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.ListContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 7px;
+}
 .Media{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: rgb(25, 22, 22);
     display: grid;
-    grid-template-columns: 27% 50%;
+    grid-template-columns: 40% 50%;
     justify-items: center;
     align-items: center;
     width: 80%;
@@ -213,16 +254,21 @@ function DeleteFromDatabase(){
 }
 .MediaImg{
     width: 100%; /* adjust as needed *//* maintain aspect ratio */
-    max-width: 70%;
-    max-height: 70%;
+    height: 100%;
     object-fit:contain;
+}
+.MediaInfo{
+    margin-left: 2%;
 }
 .InfoText{
     font-weight: 500;
     color: white;
 }
 .ReviewContainer{
-    width: 80%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
     height: 30%;
     display:flex;
     flex-direction: column;
@@ -257,15 +303,21 @@ function DeleteFromDatabase(){
     align-self: self-start;
     justify-self: self-start;
 }
-
+.Review2{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: center;
+    width: 80%;
+}
 .Review{
-    width: 90%;
+    width: 100%;
     background-color: rgb(46, 44, 44);
     margin-top: 1%;
     color: white;
 /*     display: grid;
     grid-template-columns: 20% 60% 10%; */
-    margin-left: 5%;
     display: flex;
     flex-direction: row;
     justify-items: center;
@@ -288,5 +340,41 @@ function DeleteFromDatabase(){
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+.DeleteB:hover {
+    background: #655a5a;
+}
+.icon-button{
+    border: none ;
+    background: none;
+    cursor: pointer;
+    color: white;
+}
+.icon-button:hover {
+    background-color: #ff0000; 
+}
+
+.icon-button:focus {
+    outline: none;
+}
+button {
+    
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px; 
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:active {
+    background: #004085;
 }
 </style>
