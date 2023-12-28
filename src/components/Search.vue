@@ -1,6 +1,8 @@
 <template>
     <div class="Container">
-        <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
+        <div class="Search">
+            <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
+        </div>
         <div :key="$route.fullPath">
             <div v-for="media in searchResults">
                 <div class="Media" @click ="goToMedia(media.name)">
@@ -78,9 +80,10 @@ function goToMedia(mediaName: string){
 <style scoped>
 
 .Container{
-    display: grid;
-    grid-template-rows: 20% 30% ;
+    display: flex;
+    flex-direction: column;
     justify-items: center;
+    align-items: center;
 }
 .Media{
     display: grid;
@@ -97,5 +100,8 @@ function goToMedia(mediaName: string){
     font-weight: 500;
     color: white;
 }
-
+.Search{
+    margin-top: 5%;
+    width: 100%;
+}
 </style>

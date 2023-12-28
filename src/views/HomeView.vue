@@ -3,7 +3,7 @@
         <div>
             <router-view></router-view>
         </div>
-        <UserBar></UserBar>
+        <UserBar class="UserBar"></UserBar>
         
     </div>
 </template>
@@ -20,7 +20,7 @@
 
 .Home{
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 85% 15%;
     object-fit:cover;
 }
 

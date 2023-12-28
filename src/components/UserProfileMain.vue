@@ -43,12 +43,35 @@ import axios from 'axios';
 <style scoped>
 
 .MyProfileMain{
-    display: grid;
-    grid-template-rows: 10% 30% 30%;
-    object-fit:contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .White{
     color: white;
+}
+
+button {
+    margin-top: 10%;
+    height: 10%;
+    width: 90%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px; /* Add some space between the input and the button */
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:active {
+    background: #004085;
 }
 
 </style>

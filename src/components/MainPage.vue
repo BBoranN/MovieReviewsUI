@@ -1,8 +1,11 @@
 <template>
     <div class="Main">
-        <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
-        <div>
-            <div v-for="media in medias">
+        <div class="Search">
+            <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
+        </div>
+        <div class="WrapperWrapper">
+            <div class="WrapperHeader">Recently Uploaded</div>
+            <div v-for="media in medias" class="WrapperMedia">
                 <div class="Media" @click ="goToMedia(media.name)">
                     <img :src=media.photoUrl alt="../images/noMediaImage.jpg" class="MediaImg">
                     <p class="MediaTitle">{{ media.name }}</p>
@@ -54,22 +57,31 @@
 <style scoped>
 
 .Main{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-items: center;
-    object-fit:cover;
+    align-items: center;
 }
 
 .Media{
     display: grid;
     grid-template-columns: 30% 60%;
     align-items: center;
+    /* border: 5px solid white; */
+    /* padding-bottom: 10px; */
+    background-color: rgb(46, 44, 44);
+}
+.WrapperWrapper{
+    margin-top: 5%;
+    width: 60%;
+    max-height: 60%;
+    align-items: center;
 }
 .MediaImg{
     width: 100%; /* adjust as needed */
-    height: auto; /* maintain aspect ratio */
-    max-width: 70%;
-    max-height: 70%;
-    object-fit:contain;
+    height: 100%; /* maintain aspect ratio */
+    /* object-fit:contain; */
+    align-self: center;
 }
 .MediaTitle{
     font-size: 1.5rem;
@@ -77,6 +89,19 @@
     color: white;
     margin: 0;
 }
+.WrapperMedia{
+    margin-top: 5%;
+    width: 100%;
+}
+.WrapperHeader{
+    font-size: 2rem;
+    font-weight: 500;
+    color: white;
+    margin: 0;
+}
 
-
+.Search{
+    margin-top: 5%;
+    width: 100%;
+}
 </style>

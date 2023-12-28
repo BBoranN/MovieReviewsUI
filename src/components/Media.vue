@@ -1,6 +1,8 @@
 <template>
     <div class="Container">
-        <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
+        <div class="Search">
+            <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
+        </div>
         <div>
             <button @click="getLists">Add to a List</button>
             <div v-if="showLists">
@@ -17,14 +19,16 @@
                 <p class="InfoText">Genre : {{media!.genre}}</p>
                 <p class="InfoText">Director : {{media!.director}}</p>
             </div>
-            <button v-if="isAdmin" @click="DeleteFromDatabase">Delete from database</button>
+            <button v-if="isAdmin" @click="DeleteFromDatabase" class="DeleteB">Delete from database</button>
         </div>
 
         <div class="ReviewContainer">
-            <button @click="NewReview">Make Review</button>
-            <div v-if="reviewing">
-                <textarea v-model="userReview"></textarea>
-                <button @click="MakeReview">Submit</button>
+            <div class="NewReview">
+                <button @click="NewReview">Make Review</button>
+                <div v-if="reviewing">
+                    <textarea v-model="userReview"></textarea>
+                    <button @click="MakeReview">Submit</button>
+                </div>
             </div>
             <div v-if="reviews">
                 <div v-for="review in reviews" class="Review">
@@ -34,7 +38,7 @@
                         
                     </div>
                     <p class="Review">{{review.review}}</p>
-                    <button @click="DeleteReview(review)" v-if="isAdmin">Delete</button>
+                    <button @click="DeleteReview(review)" v-if="isAdmin" class="DeleteB">Delete</button>
                 </div>
             </div>
         </div>
@@ -187,9 +191,14 @@ function DeleteFromDatabase(){
 <style scoped>
 
 .Container{
-    display: grid;
+/*     display: grid;
     grid-template-rows: 20% 5% 25% 50%;
+    justify-items: center; */
     justify-items: center;
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     
@@ -198,6 +207,9 @@ function DeleteFromDatabase(){
     display: grid;
     grid-template-columns: 27% 50%;
     justify-items: center;
+    align-items: center;
+    width: 80%;
+    height: 40%;
 }
 .MediaImg{
     width: 100%; /* adjust as needed *//* maintain aspect ratio */
@@ -210,9 +222,20 @@ function DeleteFromDatabase(){
     color: white;
 }
 .ReviewContainer{
+    width: 80%;
+    height: 30%;
+    display:flex;
+    flex-direction: column;
     
-    display:grid;
-    grid-template-rows: 10% 80%;
+    /* grid-template-rows: 10% 80%; */
+}
+
+.NewReview{
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
 }
 .ReviewText{
     font-weight: 500;
@@ -220,17 +243,50 @@ function DeleteFromDatabase(){
 }
 
 .ProfileImage{
-    max-width: 100%;
-    max-height: 100%;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
 .ReviewHeader{
-    display: grid;
-    grid-template-rows: 20% 60% ;
+    margin-left: 5px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    align-self: self-start;
+    justify-self: self-start;
 }
+
 .Review{
-    display: grid;
-    grid-template-columns: 20% 60% 10%;
+    width: 90%;
+    background-color: rgb(46, 44, 44);
+    margin-top: 1%;
     color: white;
+/*     display: grid;
+    grid-template-columns: 20% 60% 10%; */
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+.Search{
+    margin-top: 5%;
+    width: 100%;
+}
+.DeleteB{
+    margin-left: auto;
+    margin-right: 20px;
+    height: 30%;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 </style>

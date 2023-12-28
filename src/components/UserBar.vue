@@ -2,9 +2,9 @@
     <div v-if="isLoggedIn" class="UpperContainer">
         <div class="User">
             <img :src="photoUrl" class="ProfileImage" alt="../images/noUserImage.png" @click="goToProfile">
-            <p v-text="username"></p>
+            <div class="username">{{ username }}</div>
         </div>
-        <div>
+        <div class="AddMedia">
             <button v-if="isAdmin" @click="addMedia">Add New Media</button>
             <button v-else @click ="toggleLists" >Lists</button>
             <div v-if="showLists">
@@ -13,7 +13,9 @@
                 </div>
             </div>
         </div>
-        <button @click="logout">Logout</button>
+        <div class="Logout">
+            <button @click="logout">Logout</button>
+        </div>
     </div>
     <div v-else class="NotLoged">
         <button @click="login">Login</button>
@@ -82,9 +84,10 @@
 
 <style scoped>
     .UpperContainer{
-        background-color: rgb(117, 29, 132);
+        background-color: rgb(121, 6, 141);
         height: 100vh;
-        display: grid;
+        display: flex;
+        flex-direction: column;
         justify-items: center;
         grid-template-rows: 20% 50% 5%;
     }
@@ -95,6 +98,7 @@
         
     }
     .User{
+        margin-top: 16%;
         display: grid;
         place-items: center;
     }
@@ -105,4 +109,43 @@
         justify-items: center;
         height: 100vh;
     }
+    button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:active {
+    background: #004085;
+}
+.username {
+    font-size: 1.5rem;
+    color: #000000;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.Logout{
+    width: 100%;
+    display:  flex;
+    justify-content: center;
+    align-self: flex-end;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: 10%;
+}
+.AddMedia{
+    margin-top: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 </style>

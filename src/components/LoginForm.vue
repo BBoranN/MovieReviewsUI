@@ -1,9 +1,11 @@
 <template>
     <div class="Loginform">
-        <h3>Welcome to Movie Review</h3>
-        <input type="text" placeholder="Username" v-model="username"/>
-        <input type="password" placeholder="Password" v-model="password"/>
-        <button @click="login">Sign in to Continue</button>
+        <div class="Header">Welcome to Movie Review</div>
+        <div class="FormContainer">
+            <input type="text" placeholder="Username" v-model="username"/>
+            <input type="password" placeholder="Password" v-model="password"/>
+            <button @click="login">Sign in</button>
+        </div>
     </div>
 </template>
 
@@ -45,9 +47,22 @@ function login(){
 <style scoped>
 
 .Loginform{
+/*     display: grid;
+    place-items: center;
+    grid-template-rows: 20% 60%; */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.FormContainer{
     display: grid;
     place-items: center;
-    grid-template-rows: 2fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 15px;
+    border-radius: 10px;
+    width:50%;
 }
 
 h3{
@@ -55,4 +70,52 @@ h3{
     font-weight: 500;
     color: white;
 }
+input {
+    padding: 10px 0;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    background: #f5f5f5;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1rem;
+}
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,0.1);
+    background: #e8e8e8;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #680fbb;
+    color: white;
+    font-size: 1.3rem;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background: #680fbb;
+}
+
+button:active {
+    background: #004085;
+}
+.Header{
+/*     color: #7520c4;
+    padding-bottom: 10px;
+    font-size: 2.5rem;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif; */
+    color: #FFFFFF;
+background: #000000;
+text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+font-size: 3em;
+}
+    
 </style>
