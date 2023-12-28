@@ -17,6 +17,7 @@
                 <p class="InfoText">Genre : {{media!.genre}}</p>
                 <p class="InfoText">Director : {{media!.director}}</p>
             </div>
+            <button v-if="isAdmin" @click="DeleteFromDatabase">Delete from database</button>
         </div>
 
         <div class="ReviewContainer">
@@ -165,6 +166,19 @@ function DeleteReview(review:mediaReview){
     then((response) => {
         console.log(response.data);
         router.go(0);
+    })
+}
+
+function DeleteFromDatabase(){
+    axios.delete('https://localhost:7129/api/Media/DeleteMedia?id='+media.value!.id,{
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+    
+    }).
+    then((response) => {
+        console.log(response.data);
+        router.push('/home');
     })
 }
 
