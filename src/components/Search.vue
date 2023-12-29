@@ -3,11 +3,12 @@
         <div class="Search">
             <SearchDiv :value="searchTerm" @update:value="searchTerm = $event"/>
         </div>
-        <div :key="$route.fullPath">
-            <div v-for="media in searchResults">
-                <div class="Media" @click ="goToMedia(media.name)">
+        <div class="SearchResults">
+            <div v-for="media in searchResults" class="Media">
+                <div  @click ="goToMedia(media.name)" class="MediaChild">
                     <img :src=media.photoUrl alt="../images/noMediaImage.jpg" class="MediaImg">
-                    <p class="MediaTitle">{{ media.name }}</p>
+                    <div class="MediaTitle">{{ media.name }}</div>
+                    <div class="Score">Score: {{ media.totalVotes }}</div>
                 </div>
             </div>
         </div>
@@ -50,20 +51,22 @@ watch(route, async (to, from) => {
 onMounted(async () =>{
     const route = useRoute();
     searchTerm.value = Array.isArray(route.params.name) ? route.params.name[0] : route.params.name;
-    const response = await axios.get('https://localhost:7129/api/Media?title='+searchTerm.value)
+    const response = await axios.get('https://localhost:7129/api/Media/search?title='+searchTerm.value)
     .then((response) => {
-        console.log(response.data);
-        let mediaItem:media = {
-            id: response.data.id,
-            name: response.data.title,
-            description: response.data.description,
-            discriminator: response.data.discriminator,
-            genre: response.data.genre,
-            director: response.data.director,
-            photoUrl : response.data.photoUrl,
+        for(let x in response.data){
+            let mediaItem:media = {
+                id: response.data[x].id,
+                name: response.data[x].title,
+                description: response.data[x].description,
+                discriminator: response.data[x].discriminator,
+                genre: response.data[x].genre,
+                director: response.data[x].director,
+                photoUrl: response.data[x].photoUrl,
+                totalVotes: response.data[x].totalvotes ? response.data[x].totalvotes : 0,
+            }
+            searchResults.value.push(mediaItem);
         }
-        console.log(mediaItem);
-        searchResults.value.push(mediaItem);
+
     })
 
 });
@@ -84,21 +87,47 @@ function goToMedia(mediaName: string){
     flex-direction: column;
     justify-items: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.SearchResults{
+    display: grid;
+    grid-gap: 5%;
+    margin-top: 5%;
+    align-items: center;
+    width: 100%;
+    justify-items: center;
 }
 .Media{
+    width: 60%;
     display: grid;
-    grid-template-columns: 40% 60%;
+    align-items: self-start;
+    border: 5px solid rgb(172, 167, 167);
+    justify-items: center;
+    cursor: pointer;
+}
+.MediaChild{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
 }
 .MediaImg{
-    max-width: 70%;
-    max-height: 70%;
-    object-fit:contain;
+    max-width: 50%;
+    max-height: 50%;
+    margin-right: auto;
 }
 .MediaTitle{
     font-size: 1.5rem;
     font-weight: 500;
     color: white;
+    margin-right: auto;
+}
+.Score{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    margin-left: auto;
 }
 .Search{
     margin-top: 5%;

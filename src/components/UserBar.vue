@@ -101,6 +101,7 @@
         margin-top: 16%;
         display: grid;
         place-items: center;
+        cursor: pointer;
     }
     .NotLoged{
         background-color: rgb(117, 29, 132);

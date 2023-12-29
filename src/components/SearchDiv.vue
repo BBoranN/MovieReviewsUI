@@ -22,7 +22,9 @@
     };
     
     function performSearch () {
-        console.log(props.value);
+        if(props.value == ''){
+            return;
+        }
         router.push('/home/search/'+props.value);
     };
   </script>

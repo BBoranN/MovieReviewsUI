@@ -20,6 +20,7 @@ export type media = {
     director: string,
     genre: string
     photoUrl: string,
+    totalVotes?: number,
 }
 
 export type mediaReview ={

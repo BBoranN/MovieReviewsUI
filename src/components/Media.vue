@@ -19,11 +19,12 @@
                 <p class="InfoText">Genre : {{media!.genre}}</p>
                 <p class="InfoText">Director : {{media!.director}}</p>
                 <div class="VoteButtons">
-                    <button class="icon-button" @click="">
-                        <i class="bi bi-hand-thumbs-up"></i>
+                    <div class="InfoText">Total Score: {{ media.totalVotes }}</div>
+                    <button class="icon-buttonUp" @click="UpVote">
+                        <i class="bi bi-hand-thumbs-up" :style="{ color: hasVoted == 1 ? '#1d9719' : 'white'}"></i>
                     </button>
-                    <button class="icon-button" @click="">
-                        <i class="bi bi-hand-thumbs-down"></i>
+                    <button class="icon-buttonDown" @click="DownVote">
+                        <i class="bi bi-hand-thumbs-down" :style="{ color: hasVoted == -1 ? 'red' : 'white'}"></i>
                     </button>
                 </div>
                 <button v-if="isAdmin" @click="DeleteFromDatabase" class="DeleteB">Delete from database</button>
@@ -70,6 +71,7 @@ const userReview= ref('');
 const showLists= ref(false);
 const lists = ref<list[]>([]);
 const isAdmin = ref(false);
+const hasVoted = ref(0);
 
 onMounted(async () =>{
     const user = JSON.parse( sessionStorage.getItem('user')!);
@@ -87,6 +89,7 @@ onMounted(async () =>{
             genre: response.data.genre,
             director: response.data.director,
             photoUrl: response.data.photoUrl,
+            totalVotes: response.data.totalvotes ? response.data.totalvotes : 0,
         }
         console.log(mediaItem);
         media.value = mediaItem ;
@@ -120,6 +123,16 @@ onMounted(async () =>{
                     }
                     lists.value.push(listItem);
                 }
+    })
+
+    axios.get('https://localhost:7129/api/Media/HasVoted?mediaid='+media.value!.id+'&userid='+user.id,{
+        headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+    
+    }).
+    then((response) => {
+        hasVoted.value = response.data;
     })
 });
 
@@ -192,6 +205,34 @@ function DeleteFromDatabase(){
         console.log(response.data);
         router.push('/home');
     })
+}
+
+function UpVote(){
+    const user= JSON.parse(sessionStorage.getItem('user')!);
+    const token = sessionStorage.getItem('token');
+    const mediaId = media.value!.id;
+    axios.post('https://localhost:7129/api/Media/MakeVote',{ "mediaid":mediaId,"userid":user.id, "vote":1},{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((response) => {
+        console.log(response.data);
+    })
+    router.go(0);
+}
+
+function DownVote(){
+    const user= JSON.parse(sessionStorage.getItem('user')!);
+    const token = sessionStorage.getItem('token');
+    const mediaId = media.value!.id;
+    axios.post('https://localhost:7129/api/Media/MakeVote',{ "mediaid":mediaId,"userid":user.id, "vote":-1},{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((response) => {
+        console.log(response.data);
+    })
+    router.go(0);
 }
 
 </script>
@@ -292,6 +333,7 @@ function DeleteFromDatabase(){
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    cursor: pointer;
 }
 .ReviewHeader{
     margin-left: 5px;
@@ -344,17 +386,30 @@ function DeleteFromDatabase(){
 .DeleteB:hover {
     background: #655a5a;
 }
-.icon-button{
+.icon-buttonUp{
     border: none ;
     background: none;
     cursor: pointer;
     color: white;
 }
-.icon-button:hover {
+.icon-buttonUp:hover {
+    background-color: #1d9719; 
+}
+
+.icon-buttonUp:focus {
+    outline: none;
+}
+.icon-buttonDown{
+    border: none ;
+    background: none;
+    cursor: pointer;
+    color: white;
+}
+.icon-buttonDown:hover {
     background-color: #ff0000; 
 }
 
-.icon-button:focus {
+.icon-buttonDown:focus {
     outline: none;
 }
 button {
