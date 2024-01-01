@@ -46,3 +46,39 @@ async function saveChanges(){
 }
 
 </script>
+
+<style scoped>
+input {
+    padding: 10px;
+    padding-right: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1rem;
+}
+
+button {
+    margin-top: 10%;
+    height: 10%;
+    width: 90%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px; /* Add some space between the input and the button */
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:active {
+    background: #004085;
+}
+</style>
