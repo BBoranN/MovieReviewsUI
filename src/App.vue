@@ -13,6 +13,7 @@ body{
   background-color: black;
   margin: 0;
   padding: 0;
+  max-width: 100vw ;
 }
 
 </style>
