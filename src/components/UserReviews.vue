@@ -2,9 +2,9 @@
     <div class="MyReviewsContainer">
         <h1 class="Head">Reviews</h1>
         <div class="ReviewContainer">
-            <div v-for="review in reviews" :key="review.reviewId">
-                <h3 class="White">{{review.mediatitle}}</h3>
-                <p class="White">{{review.review}}</p>
+            <div v-for="(review) in reviews" :key="review.reviewId" class="black-background">
+            <div class="WhiteHeader">{{ review.mediatitle }}</div>
+            <div class="White">{{ review.review }}</div>
             </div>
         </div>
     </div>
@@ -46,10 +46,12 @@ onMounted(() => {
 <style scoped>
 
 .MyReviewsContainer{
-    display: grid;
-    grid-template-rows: 10% 90%;
+    display: flex;
+    flex-direction: column ;
     justify-items: center;
+    align-items: center;
     object-fit:cover;
+    max-width: 100%;
 }
 .Head{
     text-align: center;
@@ -57,12 +59,47 @@ onMounted(() => {
     margin-top: 50px;
 }
 .ReviewContainer{
-    display: grid;
+    display: flex;
+    flex-direction: column ;
     grid-template-rows: 1fr 1f;
-    grid-gap: 20px;
+    grid-gap: 35px;
     margin-top: 50px;
+    background-color: black;
+    margin-bottom : 00px;
+    padding: 10px;
+    width: 70%;
+}
+
+.WhiteHeader{
+    color: white;
+    display: flex;
+    width: 100%;
 }
 .White{
     color: white;
-}   
+    display: block;
+    width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+.review-frame {
+  background-color: black;
+  padding: 00px; 
+}
+.black-background {
+  background-color: #2b2c2e; 
+  color: #fff; 
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.gray-background {
+  background-color: #2b2c2e; 
+}
+
+.flex-item {
+  max-width: 200px;
+}
 </style>
