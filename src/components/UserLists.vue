@@ -71,7 +71,8 @@ import {type list,type media} from '@/types';
                         discriminator: response.data[x].discriminator,
                         genre: response.data[x].genre,
                         director: response.data[x].director,
-                    }
+                        photoUrl: ''
+                        }
                     list.medias.push(mediaItem);
                 }
                 console.log(list.medias);

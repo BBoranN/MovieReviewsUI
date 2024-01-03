@@ -82,11 +82,11 @@ onMounted(() => {
     white-space: normal;
     word-wrap: break-word;
     text-overflow: ellipsis;
-}   
+}
 
 .review-frame {
   background-color: black;
-  padding: 00px; /* Add padding for better visual separation */
+  padding: 00px; 
 }
 .black-background {
   background-color: #2b2c2e; /* Replace with your desired black background color */
@@ -96,11 +96,10 @@ onMounted(() => {
 }
 
 .gray-background {
-  background-color: #2b2c2e; /* Replace with your desired gray background color */
+  background-color: #2b2c2e; 
 }
 
 .flex-item {
-  max-width: 200px; /* Set the maximum width as needed */
-  /* Other styles for flex items */
+  max-width: 200px;
 }
 </style>
