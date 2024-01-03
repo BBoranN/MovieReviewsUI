@@ -46,7 +46,7 @@
                         <p class="ReviewText">{{review.username}}</p>
                         
                     </div>
-                    <p class="Review">{{review.review}}</p>
+                    <div class="ReviewText2">{{review.review}}</div>
                     <button @click="DeleteReview(review)" v-if="isAdmin" class="DeleteB">Delete</button>
                 </div>
             </div>
@@ -240,9 +240,7 @@ function DownVote(){
 <style scoped>
 
 .Container{
-/*     display: grid;
-    grid-template-rows: 20% 5% 25% 50%;
-    justify-items: center; */
+
     justify-items: center;
     align-items: center;
 
@@ -306,15 +304,14 @@ function DownVote(){
     color: white;
 }
 .ReviewContainer{
-    justify-content: center;
+
     justify-items: center;
     align-items: center;
     width: 100%;
     height: 30%;
     display:flex;
     flex-direction: column;
-    
-    /* grid-template-rows: 10% 80%; */
+    margin-top: 5 px;
 }
 
 .NewReview{
@@ -327,6 +324,9 @@ function DownVote(){
 .ReviewText{
     font-weight: 500;
     color: white;
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
 }
 
 .ProfileImage{
@@ -344,6 +344,7 @@ function DownVote(){
     align-items: center;
     align-self: self-start;
     justify-self: self-start;
+
 }
 .Review2{
     align-self: center;
@@ -358,12 +359,21 @@ function DownVote(){
     background-color: rgb(46, 44, 44);
     margin-top: 1%;
     color: white;
-/*     display: grid;
-    grid-template-columns: 20% 60% 10%; */
     display: flex;
     flex-direction: row;
     justify-items: center;
     align-items: center;
+    
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+.ReviewText2{
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    width: 85%;
 }
 .Search{
     margin-top: 5%;
