@@ -3,7 +3,7 @@
         <h1 class="Head">My Reviews</h1>
         <div class="ReviewContainer">
             <div v-for="(review, index) in reviews" :key="review.reviewId" :class="{ 'black-background': index % 2 === 0, 'gray-background': index % 2 !== 0 }" class="review-container">
-            <div class="White">{{ review.mediatitle }}</div>
+            <div class="WhiteHeader">{{ review.mediatitle }}</div>
             <div class="White">{{ review.review }}</div>
             </div>
         </div>
@@ -66,14 +66,21 @@ onMounted(() => {
     margin-bottom : 00px;
     padding: 10px;
     max-width: 70%;
-    
+}
+
+.WhiteHeader{
+    color: white;
+    display: flex;
+    width: 100%;
 }
 .White{
     color: white;
     display: flex;
-    max-width: 1200px;
-    white-space: pre-wrap;
-
+    width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: scroll;
 }   
 
 .review-frame {
