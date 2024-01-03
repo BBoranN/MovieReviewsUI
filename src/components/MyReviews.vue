@@ -3,8 +3,8 @@
         <h1 class="Head">My Reviews</h1>
         <div class="ReviewContainer">
             <div v-for="(review) in reviews" :key="review.reviewId" class="black-background">
-            <div class="WhiteHeader">{{ review.mediatitle }}</div>
-            <div class="White">{{ review.review }}</div>
+                <div class="WhiteHeader">{{ review.mediatitle }}</div>
+                <div class="White">{{ review.review }}</div>
             </div>
         </div>
     </div>
@@ -89,8 +89,8 @@ onMounted(() => {
   padding: 00px; 
 }
 .black-background {
-  background-color: #2b2c2e; 
-  color: #fff; 
+  background-color: #2b2c2e; /* Replace with your desired black background color */
+  color: #fff; /* Text color for better visibility on dark background */
   box-sizing: border-box;
   width: 100%;
 }
