@@ -1,18 +1,27 @@
 <template>
     <div class="ListsPageContainer">
-        <h1 class="Head">Lists</h1>
+        <h1 class="Head">My Lists</h1>
+        <div>
+            <button @click="MakeList">Make a new List</button>
+            <div v-if="makingList">
+                <input type="text" v-model="newListName" placeholder="List Name">
+                <button @click="submitList">Submit</button>
+            </div>
+        </div>
         <div class="ListsContainer">
-            <div v-for="showlist in showLists" class="List">
-                <h3 @click="loadList(showlist)" class="White">{{showlist.list.name}}</h3>
+            <div v-for="showlist in showLists" class="List" :key="showlist.list.id">
+                <h3 @click="loadList(showlist)" class="Categories">{{showlist.list.name}}</h3>
                 <div v-if="showlist.show">
                     <div v-for="media in showlist.medias" :key="media.id">
-                        <h3 class="White">{{media.name}}</h3>
+                        <div class="Display">
+                            <img src="..\images\noMediaImage.jpg" alt="Fixed Photo" class="MediaImage">
+                            <h3 class="White">{{media.name}}</h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup lang="ts">
@@ -111,16 +120,41 @@ import {type list,type media} from '@/types';
 }
 
 .ListsContainer{
-    display: grid;
+    display: flex;
     grid-template-rows: 5% repeat(auto);
     justify-items: center;
+    gap: 5%;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 
 }
 .List{
-    width: 100%;
+    width: 55%;
+    
 }
 .White{
     color: white;
+
+    
+}
+.Categories{
+    color: white;
+    background-color: #3d3d3d;
+    /*border-radius: 60% / 40%;*/
+    text-align: center;
+
+}
+
+.Display{
+    display: flex;
+
+}
+
+.MediaImage {
+  width: 20%; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio while adjusting the width */
+  margin-right: 10px;
 }
 
 </style>
