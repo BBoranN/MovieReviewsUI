@@ -66,6 +66,7 @@
     }
     function logout(){
         sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
         router.push({ name: 'login' });
     }
     function login(){

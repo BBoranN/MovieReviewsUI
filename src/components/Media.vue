@@ -76,7 +76,13 @@ const hasVoted = ref(0);
 
 onMounted(async () =>{
     const user = JSON.parse( sessionStorage.getItem('user')!);
-    isAdmin.value = user.isAdmin;
+    console.log(user);
+    if(user == null){
+        isAdmin.value = false;
+    }
+    else{
+        isAdmin.value = user.isAdmin;
+    }
     const route = useRoute();
     const mediaName = route.params.name;
     const response = await axios.get('https://localhost:7129/api/Media?title='+mediaName)
