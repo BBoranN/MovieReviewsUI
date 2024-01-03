@@ -3,8 +3,8 @@
         <h1 class="Head">My Reviews</h1>
         <div class="ReviewContainer">
             <div v-for="(review) in reviews" :key="review.reviewId" class="black-background">
-            <div class="WhiteHeader">{{ review.mediatitle }}</div>
-            <div class="White">{{ review.review }}</div>
+                <div class="WhiteHeader">{{ review.mediatitle }}</div>
+                <div class="White">{{ review.review }}</div>
             </div>
         </div>
     </div>
@@ -46,10 +46,12 @@ onMounted(() => {
 <style scoped>
 
 .MyReviewsContainer{
-    display: grid;
-    grid-template-rows: 10% 90%;
+    display: flex;
+    flex-direction: column ;
     justify-items: center;
+    align-items: center;
     object-fit:cover;
+    max-width: 100%;
 }
 .Head{
     text-align: center;
@@ -65,7 +67,7 @@ onMounted(() => {
     background-color: black;
     margin-bottom : 00px;
     padding: 10px;
-    max-width: 50%;
+    width: 70%;
 }
 
 .WhiteHeader{
@@ -89,6 +91,8 @@ onMounted(() => {
 .black-background {
   background-color: #2b2c2e; /* Replace with your desired black background color */
   color: #fff; /* Text color for better visibility on dark background */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .gray-background {
