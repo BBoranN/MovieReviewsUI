@@ -30,6 +30,7 @@
                 <button v-if="isAdmin" @click="DeleteFromDatabase" class="DeleteB">Delete from database</button>
             </div>
         </div>
+        
 
         <div class="ReviewContainer">
             <div class="NewReview">
