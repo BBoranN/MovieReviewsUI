@@ -1,7 +1,7 @@
 <template>
     <div class="Container">
         <router-view></router-view>
-        <UserBar></UserBar>
+        <UserBar class = "UserBar"></UserBar>
     </div>
 </template>
 
@@ -16,8 +16,9 @@
 
 .Container{
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 85% 15%;
     object-fit:cover;
 }
+
 
 </style>

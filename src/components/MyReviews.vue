@@ -82,15 +82,15 @@ onMounted(() => {
     white-space: normal;
     word-wrap: break-word;
     text-overflow: ellipsis;
-}
+}   
 
 .review-frame {
   background-color: black;
   padding: 00px; 
 }
 .black-background {
-  background-color: #2b2c2e; /* Replace with your desired black background color */
-  color: #fff; /* Text color for better visibility on dark background */
+  background-color: #2b2c2e; 
+  color: #fff; 
   box-sizing: border-box;
   width: 100%;
 }

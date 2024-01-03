@@ -1,5 +1,8 @@
 <template>
     <div v-if="isLoggedIn" class="UpperContainer">
+        <button @click="home">
+            <i class = "bi bi-house"></i>
+        </button>
         <div class="User">
             <img :src="photoUrl" class="ProfileImage" alt="../images/noUserImage.png" @click="goToProfile">
             <div class="username">{{ username }}</div>
@@ -18,6 +21,9 @@
         </div>
     </div>
     <div v-else class="NotLoged">
+        <button>
+            <i class = "bi bi-house"></i>
+        </button>
         <button @click="login">Login</button>
         <button @click="register">Register</button>
     </div>
@@ -80,6 +86,9 @@
     }
     function addMedia(){
         router.push('/AddMedia');
+    }
+    function home(){
+        router.push('/home');
     }
 </script>
 
