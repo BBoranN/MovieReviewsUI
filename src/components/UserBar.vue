@@ -84,7 +84,7 @@
 
 <style scoped>
     .UpperContainer{
-        background-color: rgb(121, 6, 141);
+        background-color: #8C52FF;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -104,7 +104,7 @@
         cursor: pointer;
     }
     .NotLoged{
-        background-color: rgb(117, 29, 132);
+        background-color: #8C52FF;
         display: grid;
         grid-template-rows: 5% 5%;
         justify-items: center;
@@ -114,7 +114,7 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background: #007BFF;
+    background: #000000;
     color: white;
     font-size: 1rem;
     cursor: pointer;

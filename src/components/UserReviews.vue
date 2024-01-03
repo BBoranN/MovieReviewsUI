@@ -34,7 +34,8 @@ onMounted(() => {
                 review: response.data[x].review,
                 username: response.data[x].username,
                 mediatitle: response.data[x].mediatitle,
-            }
+                photoUrl: ''
+}
             reviews.value.push(reviewItem);
         }
     })

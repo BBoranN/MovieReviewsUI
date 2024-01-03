@@ -88,16 +88,19 @@
     font-weight: 500;
     color: white;
     margin: 0;
+    
 }
 .WrapperMedia{
     margin-top: 5%;
     width: 100%;
+    
 }
 .WrapperHeader{
     font-size: 2rem;
     font-weight: 500;
     color: white;
     margin: 0;
+    margin-left: 40%;
 }
 
 .Search{

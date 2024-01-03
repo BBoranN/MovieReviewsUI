@@ -2,9 +2,9 @@
     <div class="MyReviewsContainer">
         <h1 class="Head">My Reviews</h1>
         <div class="ReviewContainer">
-            <div v-for="review in reviews" :key="review.reviewId">
-                <h3 class="White">{{review.mediatitle}}</h3>
-                <p class="White">{{review.review}}</p>
+            <div v-for="(review, index) in reviews" :key="review.reviewId" :class="{ 'black-background': index % 2 === 0, 'gray-background': index % 2 !== 0 }" class="review-container">
+            <div class="White">{{ review.mediatitle }}</div>
+            <div class="White">{{ review.review }}</div>
             </div>
         </div>
     </div>
@@ -57,12 +57,40 @@ onMounted(() => {
     margin-top: 50px;
 }
 .ReviewContainer{
-    display: grid;
+    display: flex;
+    flex-direction: column ;
     grid-template-rows: 1fr 1f;
-    grid-gap: 20px;
+    grid-gap: 35px;
     margin-top: 50px;
+    background-color: black;
+    margin-bottom : 00px;
+    padding: 10px;
+    max-width: 70%;
+    
 }
 .White{
     color: white;
+    display: flex;
+    max-width: 1200px;
+    white-space: pre-wrap;
+
 }   
+
+.review-frame {
+  background-color: black;
+  padding: 00px; /* Add padding for better visual separation */
+}
+.black-background {
+  background-color: #2b2c2e; /* Replace with your desired black background color */
+  color: #fff; /* Text color for better visibility on dark background */
+}
+
+.gray-background {
+  background-color: #2b2c2e; /* Replace with your desired gray background color */
+}
+
+.flex-item {
+  max-width: 200px; /* Set the maximum width as needed */
+  /* Other styles for flex items */
+}
 </style>
