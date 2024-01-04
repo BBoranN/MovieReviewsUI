@@ -70,6 +70,7 @@
     /* border: 5px solid white; */
     /* padding-bottom: 10px; */
     background-color: rgb(46, 44, 44);
+    height: 20vh;
 }
 .WrapperWrapper{
     margin-top: 5%;
@@ -79,9 +80,10 @@
 }
 .MediaImg{
     width: 100%; /* adjust as needed */
-    height: 100%; /* maintain aspect ratio */
+    height: 20vh; /* maintain aspect ratio */
     /* object-fit:contain; */
     align-self: center;
+    object-fit: cover;
 }
 .MediaTitle{
     font-size: 1.5rem;

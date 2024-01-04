@@ -5,6 +5,7 @@
             <input type="text" placeholder="Username" v-model="username"/>
             <input type="password" placeholder="Password" v-model="password"/>
             <button @click="login">Sign in</button>
+            <div @click="createAccount" class="CreateAccount">Create Account</div>
         </div>
     </div>
 </template>
@@ -42,6 +43,10 @@ function login(){
     });
 }
 
+function createAccount(){
+    router.push('/register');
+}
+
 </script>
 
 <style scoped>
@@ -57,10 +62,15 @@ function login(){
 }
 
 .FormContainer{
-    display: grid;
+/*     display: grid;
     place-items: center;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 15px;
+    grid-gap: 15px; */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
     border-radius: 10px;
     width:50%;
 }
@@ -113,9 +123,18 @@ button:active {
     font-weight: 500;
     font-family: 'Roboto', sans-serif; */
     color: #FFFFFF;
-background: #000000;
-text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
-font-size: 3em;
+    background: #000000;
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+    font-size: 2.5vw;
+}
+.CreateAccount{
+    color: #bc7bcb;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
 }
     
 </style>

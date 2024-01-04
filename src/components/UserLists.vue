@@ -2,7 +2,6 @@
     <div class="ListsPageContainer">
         <h1 class="Head">My Lists</h1>
         <div>
-            <button @click="MakeList">Make a new List</button>
             <div v-if="makingList">
                 <input type="text" v-model="newListName" placeholder="List Name">
                 <button @click="submitList">Submit</button>

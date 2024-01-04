@@ -1,7 +1,7 @@
 <template>
     <div class="ListsPageContainer">
         <h1 class="Head">My Lists</h1>
-        <div>
+        <div class="MakeList">
             <button @click="MakeList">Make a new List</button>
             <div v-if="makingList">
                 <input type="text" v-model="newListName" placeholder="List Name">
@@ -108,10 +108,19 @@ import {type list,type media} from '@/types';
 
 <style scoped>
 .ListsPageContainer{
-    display: grid;
-    grid-template-rows: 10% 5% 85%;
+/*     display: grid;
+    grid-template-rows: 10% 5% 85%; */
+    display: flex;
+    flex-direction: column;
     justify-items: center;
     object-fit:cover;
+}
+.MakeList{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .Head{
@@ -156,6 +165,27 @@ import {type list,type media} from '@/types';
   width: 20%; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio while adjusting the width */
   margin-right: 10px;
+}
+
+button {
+    
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px; 
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:active {
+    background: #004085;
 }
 
 </style>

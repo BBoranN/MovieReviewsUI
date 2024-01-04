@@ -22,7 +22,7 @@ function Register(){
     console.log('password:', password.value); // And this line
 
     axios.post('https://localhost:7129/api/User/addUser',{"username":username.value, "password":password.value,
-    "email":"none","photoUrl":"none","isAdmin":false}).
+    "email":"none","photoUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Robert_De_Niro_KVIFF_portrait.jpg/640px-Robert_De_Niro_KVIFF_portrait.jpg","isAdmin":false}).
     then((response) => {
         console.log(response.data);
         router.push({name:'login'});
