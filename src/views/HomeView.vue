@@ -23,5 +23,8 @@
     grid-template-columns: 85% 15%;
     object-fit:cover;
 }
-
+.UserBar{
+    position: fixed;
+    right: 0;
+}
 </style>

@@ -2,7 +2,7 @@
     <div class="Container">
         
         <router-view></router-view>
-        <UserBar></UserBar>
+        <UserBar class="UserBar"></UserBar>
     </div>
 </template>
 
@@ -20,5 +20,8 @@
     grid-template-columns: 85% 15%;
     object-fit:cover;
 }
-
+.UserBar{
+    position: fixed;
+    right: 0;
+}
 </style>

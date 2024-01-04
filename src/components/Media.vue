@@ -52,6 +52,7 @@
                 </div>
             </div>
         </div>
+        <button @click="scrollToTop" class="ScrollButton"> <i class="bi bi-arrow-up-circle"></i> </button>
     </div>
 </template>
 
@@ -242,6 +243,13 @@ function DownVote(){
     router.go(0);
 }
 
+const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
 </script>
 
 <style scoped>
@@ -322,7 +330,6 @@ function DownVote(){
 }
 
 .NewReview{
-    margin-left: 5%;
     display: flex;
     flex-direction: row;
     justify-items: center;
@@ -448,5 +455,13 @@ button:hover {
 
 button:active {
     background: #004085;
+}
+
+.ScrollButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    /* Add your other styles here */
+    background-color: #655a5a;
 }
 </style>
