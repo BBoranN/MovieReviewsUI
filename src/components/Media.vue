@@ -51,6 +51,7 @@
                     <button @click="DeleteReview(review)" v-if="isAdmin" class="DeleteB">Delete</button>
                 </div>
             </div>
+            <button @click="LoadMoreReview(lastIndex,media!.id)"> Load More </button>
         </div>
         <button @click="scrollToTop" class="ScrollButton"> <i class="bi bi-arrow-up-circle"></i> </button>
     </div>
@@ -74,7 +75,7 @@ const showLists= ref(false);
 const lists = ref<list[]>([]);
 const isAdmin = ref(false);
 const hasVoted = ref(0);
-
+const lastIndex = ref(0);
 onMounted(async () =>{
     const user = JSON.parse( sessionStorage.getItem('user')!);
     console.log(user);
@@ -103,7 +104,7 @@ onMounted(async () =>{
         media.value = mediaItem ;
     })
 
-    const response2= await axios.get('https://localhost:7129/api/Review/getLastReviews?mediaId='+media.value!.id).
+    await axios.get('https://localhost:7129/api/Review/getLastReviews?mediaId='+media.value!.id).
     then((response) => {
         for (let x in response.data){
             let reviewItem:mediaReview = {
@@ -116,6 +117,7 @@ onMounted(async () =>{
                 photoUrl: response.data[x].photoUrl,
             }
             reviews.value.push(reviewItem);
+            lastIndex.value = response.data[x].reviewid;
         }
         console.log(reviews.value);
     })
@@ -143,6 +145,26 @@ onMounted(async () =>{
         hasVoted.value = response.data;
     })
 });
+
+function LoadMoreReview(Index:number,mediaId:number){
+    axios.get('https://localhost:7129/api/Review/getMoreReviews?mediaId='+mediaId+'&reviewId='+Index).
+    then((response) => {
+        for (let x in response.data){
+            let reviewItem:mediaReview = {
+                reviewId: response.data[x].reviewid,
+                userId: response.data[x].userid,
+                mediaId: response.data[x].mediaId,
+                review: response.data[x].review,
+                username: response.data[x].username,
+                mediatitle: response.data[x].mediatitle,
+                photoUrl: response.data[x].photoUrl,
+            }
+            reviews.value.push(reviewItem);
+            lastIndex.value = reviewItem.reviewId;
+        }
+        console.log(reviews.value);
+    })
+}
 
 function NewReview(){
     reviewing.value = !reviewing.value;
@@ -304,7 +326,7 @@ const scrollToTop = () => {
     justify-items: center;
     align-items: center;
     width: 80%;
-    height: 40%;
+    height: 400px;
 }
 .MediaImg{
     width: 100%; /* adjust as needed *//* maintain aspect ratio */
