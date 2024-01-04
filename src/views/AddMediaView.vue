@@ -80,7 +80,7 @@ async function Add(){
         console.log(response.data);
     })
     }
-
+    alert('Media added');
 }
 function Back(){
     window.history.back();

@@ -14,7 +14,7 @@
                 <div v-if="showlist.show">
                     <div v-for="media in showlist.medias" :key="media.id">
                         <div class="Display">
-                            <img src="..\images\noMediaImage.jpg" alt="Fixed Photo" class="MediaImage">
+                            <img :src=media.photoUrl alt="Fixed Photo" class="MediaImage">
                             <h3 class="White">{{media.name}}</h3>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ import {type list,type media} from '@/types';
                         discriminator: response.data[x].discriminator,
                         genre: response.data[x].genre,
                         director: response.data[x].director,
-                        photoUrl: ''
+                        photoUrl: response.data[x].photourl,
                         }
                     list.medias.push(mediaItem);
                 }

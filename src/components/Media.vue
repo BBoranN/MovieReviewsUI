@@ -330,7 +330,7 @@ const scrollToTop = () => {
 }
 .MediaImg{
     width: 100%; /* adjust as needed *//* maintain aspect ratio */
-    height: 100%;
+    height: 400px;
     object-fit:contain;
 }
 .MediaInfo{

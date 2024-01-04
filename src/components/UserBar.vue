@@ -9,12 +9,12 @@
         </div>
         <div class="AddMedia">
             <button v-if="isAdmin" @click="addMedia">Add New Media</button>
-            <button v-else @click ="toggleLists" >Lists</button>
+<!--             <button v-else @click ="toggleLists" >Lists</button>
             <div v-if="showLists">
                 <div v-for="list in lists" :key="list.id">
                     <button v-text="list.name"></button>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="Logout">
             <button @click="logout">Logout</button>
@@ -97,6 +97,7 @@
         background-color: #8C52FF;
         height: 100vh;
         display: flex;
+        width: 14vw;
         flex-direction: column;
         justify-items: center;
         grid-template-rows: 20% 50% 5%;
@@ -115,8 +116,9 @@
     }
     .NotLoged{
         background-color: #8C52FF;
-        display: grid;
-        grid-template-rows: 5% 5%;
+        display: flex;
+        flex-direction: column;
+        width: 14vw;
         justify-items: center;
         height: 100vh;
     }

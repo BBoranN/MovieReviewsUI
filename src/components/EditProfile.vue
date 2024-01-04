@@ -57,13 +57,15 @@ async function saveChanges(){
     flex-direction: column;
     align-items:center;
     width: 100%;
-    gap: 5%;
+    gap: 10px;
     margin-top: 20%;
 }
 
 .EditX{
     width: 70%;
-    height: 4%;
+    /* height: 4%; */
+    border-radius: 5px;
+    height: 25px;
 }
 
 .Button{

@@ -1,6 +1,6 @@
 <template>
     <div class="ListsPageContainer">
-        <h1 class="Head">My Lists</h1>
+        <h1 class="Head">Lists</h1>
         <div>
             <div v-if="makingList">
                 <input type="text" v-model="newListName" placeholder="List Name">
@@ -13,7 +13,7 @@
                 <div v-if="showlist.show">
                     <div v-for="media in showlist.medias" :key="media.id">
                         <div class="Display">
-                            <img src="..\images\noMediaImage.jpg" alt="Fixed Photo" class="MediaImage">
+                            <img :src= media.photoUrl alt="Fixed Photo" class="MediaImage">
                             <h3 class="White">{{media.name}}</h3>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ import {type list,type media} from '@/types';
                         discriminator: response.data[x].discriminator,
                         genre: response.data[x].genre,
                         director: response.data[x].director,
-                        photoUrl: ''
+                        photoUrl: response.data[x].photourl,
                         }
                     list.medias.push(mediaItem);
                 }
@@ -119,6 +119,7 @@ import {type list,type media} from '@/types';
 }
 
 .ListsContainer{
+    margin-top: 20px;
     display: flex;
     grid-template-rows: 5% repeat(auto);
     justify-items: center;
